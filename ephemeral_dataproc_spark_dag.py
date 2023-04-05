@@ -18,7 +18,8 @@ from airflow import DAG
 from airflow.contrib.operators.dataproc_operator import DataprocClusterCreateOperator, \
     DataProcPySparkOperator, DataprocClusterDeleteOperator
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
-from airflow.operators import BashOperator, PythonOperator
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
 from airflow.models import Variable
 from airflow.utils.trigger_rule import TriggerRule
 
