@@ -93,10 +93,12 @@ with DAG('average-speed',
         # ds_nodash is an airflow macro for "[Execution] Date string no dashes"
         # in YYYYMMDD format. See docs https://airflow.apache.org/code.html?highlight=macros#macros
         cluster_name='ephemeral-spark-cluster-{{ ds_nodash }}',
-        cluster_config=CLUSTER_CONFIG,
-        image_version='2.0-debian10',
+        image_version='1.5-debian10',
+        num_workers=1,
+        service_account='',
         storage_bucket=Variable.get('dataproc_bucket'),
-        zone=Variable.get('gce_zone'))
+        zone=None,
+        region='global')
 
     # Submit the PySpark job.
     submit_pyspark = DataProcPySparkOperator(
