@@ -62,9 +62,23 @@ DEFAULT_DAG_ARGS = {
     'retries': 1,  # Retry once before failing the task.
     'retry_delay': timedelta(minutes=5),  # Time between retries.
     'project_id': Variable.get('gcp_project'),  # Cloud Composer project ID.
+    'region': Variable.get('gcp_region')
     # We only want the DAG to run when we POST to the api.
     # Alternatively, this could be set to '@daily' to run the job once a day.
     # more options at https://airflow.apache.org/scheduler.html#dag-runs
+}
+
+CLUSTER_CONFIG = {
+    "master_config": {
+        "num_instances": 1,
+        "machine_type_uri": "n2-standard-2",
+        "disk_config": {"boot_disk_type": "pd-standard", "boot_disk_size_gb": 100},
+    },
+    "worker_config": {
+        "num_instances": 1,
+        "machine_type_uri": "n2-standard-2",
+        "disk_config": {"boot_disk_type": "pd-standard", "boot_disk_size_gb": 100},
+    },
 }
 
 # Create Directed Acyclic Graph for Airflow
@@ -78,8 +92,8 @@ with DAG('average-speed',
         # ds_nodash is an airflow macro for "[Execution] Date string no dashes"
         # in YYYYMMDD format. See docs https://airflow.apache.org/code.html?highlight=macros#macros
         cluster_name='ephemeral-spark-cluster-{{ ds_nodash }}',
-        image_version='1.5-debian10',
-        num_workers=2,
+        cluster_config=CLUSTER_CONFIG,
+        image_version='2.0-debian10',
         storage_bucket=Variable.get('dataproc_bucket'),
         zone=Variable.get('gce_zone'))
 

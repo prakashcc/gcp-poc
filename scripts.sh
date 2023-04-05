@@ -19,13 +19,13 @@ gcloud composer environments run \
 prophecy\
 --location=us-central1 variables -- \
 --set gcp_project $PROJECT
-gcloud composer environments run demo-ephemeral-dataproc \
+gcloud composer environments run prophecy \
 --location=us-central1 variables -- \
 --set gce_zone us-central1-b
-gcloud composer environments run demo-ephemeral-dataproc \
+gcloud composer environments run prophecy \
 --location=us-central1 variables -- \
 --set gcs_bucket $PROJECT
-gcloud composer environments run demo-ephemeral-dataproc \
+gcloud composer environments run prophecy \
 --location=us-central1 variables -- \
 --set bq_output_table $PROJECT:ComposerDemo.nyc-tlc-yellow-trips
 
