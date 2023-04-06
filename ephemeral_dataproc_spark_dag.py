@@ -71,12 +71,12 @@ DEFAULT_DAG_ARGS = {
 
 CLUSTER_CONFIG = {
     "master_config": {
-        "num_instances": 1,
+        "num_instances": 2,
         "machine_type_uri": "n2-standard-2",
         "disk_config": {"boot_disk_type": "pd-standard", "boot_disk_size_gb": 100},
     },
     "worker_config": {
-        "num_instances": 1,
+        "num_instances": 2,
         "machine_type_uri": "n2-standard-2",
         "disk_config": {"boot_disk_type": "pd-standard", "boot_disk_size_gb": 100},
     },
