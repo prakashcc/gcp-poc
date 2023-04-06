@@ -97,7 +97,7 @@ with DAG('average-speed',
         num_workers=1,
         service_account='',
         storage_bucket=Variable.get('dataproc_bucket'),
-        zone=None,
+        zone='us-central1',
         region='global')
 
     # Submit the PySpark job.
