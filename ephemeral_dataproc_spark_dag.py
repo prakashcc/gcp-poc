@@ -94,7 +94,7 @@ with DAG('average-speed',
         # in YYYYMMDD format. See docs https://airflow.apache.org/code.html?highlight=macros#macros
         cluster_name='ephemeral-spark-cluster-{{ ds_nodash }}',
         image_version='1.5-debian10',
-        num_workers=1,
+        num_workers=2,
         service_account='',
         storage_bucket=Variable.get('dataproc_bucket'),
         zone=None,
